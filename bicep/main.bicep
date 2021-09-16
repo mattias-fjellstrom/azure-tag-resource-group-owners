@@ -15,9 +15,6 @@ module scriptStorage 'scriptStorage.bicep' = {
 module automation 'automation.bicep' = {
   name: '${deploymentDateTime}-automation-deployment'
   scope: rg
-  dependsOn: [
-    scriptStorage
-  ]
   params: {
     scriptUri: scriptStorage.outputs.scriptUri
   }
