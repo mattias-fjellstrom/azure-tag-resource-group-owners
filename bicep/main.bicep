@@ -27,6 +27,7 @@ module automation 'automation.bicep' = {
 var tagContributorRoleId = '4a9ae827-6dc8-4573-8ac7-8239d42aa03f'
 resource tagContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = {
   name: guid(subscription().id, 'tagContributor')
+  scope: subscription()
   properties: {
     principalId: automation.outputs.principalId
     roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', tagContributorRoleId)
