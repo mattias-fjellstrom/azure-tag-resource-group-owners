@@ -79,7 +79,7 @@ resource automationAccount 'Microsoft.Automation/automationAccounts@2020-01-13-p
   }
 
   resource jobSchedule 'jobSchedules' = {
-    name: '${guid('triggerScriptEveryDay')}'
+    name: '${guid(resourceGroup().id, 'triggerScriptEveryDay')}'
     properties: {
       runbook: {
         name: automationAccount::runbook.name
