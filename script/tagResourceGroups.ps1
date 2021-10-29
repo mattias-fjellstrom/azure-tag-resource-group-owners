@@ -15,6 +15,6 @@ Connect-AzAccount -Identity;
 #>
 Get-AzLog -MaxRecord 10000 -StartTime (Get-Date).AddDays(-1) |
 Where-Object {$_.Authorization.Action -like "Microsoft.Resources/subscriptions/resourceGroups/write"} |
-Select-Object @{N="ResourceGroupID"; E={$_.Authorization.Scope}}, @{N="OwnerName"; E={$_.Claims.Content.name}} |
+Select-Object @{N="GroupID"; E={$_.Authorization.Scope}}, @{N="Name"; E={$_.Claims.Content.name}}, @{N="Username"; E={$_.Caller.Substring(0, $_.Caller.IndexOf('@'))}} |
 Get-Unique -AsString |
-ForEach-Object -Process { Update-AzTag -ResourceId $_.ResourceGroupID -Tag @{"Owner"="$($_.OwnerName)"} -Operation Merge -ErrorAction SilentlyContinue }
+ForEach-Object -Process { Update-AzTag -ResourceId $_.GroupID -Tag @{"Owner"="$($_.Name)"; "Username"="$($_.Username)"} -Operation Merge -ErrorAction SilentlyContinue }
