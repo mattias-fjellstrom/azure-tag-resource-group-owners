@@ -54,9 +54,10 @@ If you repeat the deployment the script will be uploaded with a different name a
 
 ```bash
 rgName=$(az group list --query "[?starts_with(name, 'rg-automation-')].name" -o tsv)
+az lock delete --name resource-group-lock --resource-group $rgName
 az group delete --name $rgName --yes --no-wait
 ```
 
 ## Limitations
 
-To access the name of who created a resource group we must look at data from the activity log. The script is restricted to look at the previous 24 hours of data. This means that old resource groups will not be tagged. You could manually modify and run this script to include a longer timespan.
+To access the name of who created a resource group we must look at data from the activity log. The script is restricted to look at the previous 24 hours of data. This means that old resource groups will not be tagged. You could manually modify and run this script to include a longer time span.

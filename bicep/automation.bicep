@@ -9,6 +9,13 @@ var psModules = {
   'Az.Resources': '${psModuleBaseUrl}/az.resources.4.3.1.nupkg'
 }
 
+resource lock 'Microsoft.Authorization/locks@2017-04-01' = {
+  name: 'resource-group-lock'
+  properties: {
+    level: 'CanNotDelete'
+  }
+}
+
 resource automationAccount 'Microsoft.Automation/automationAccounts@2020-01-13-preview' = {
   name: 'automation-${namePostfix}'
   location: resourceGroup().location

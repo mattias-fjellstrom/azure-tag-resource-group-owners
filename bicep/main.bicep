@@ -3,7 +3,7 @@ targetScope = 'subscription'
 param deploymentDateTime string = utcNow()
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: 'rg-automation-${uniqueString(deployment().name)}'
+  name: 'rg-owner-tag-automation'
   location: deployment().location
 }
 
