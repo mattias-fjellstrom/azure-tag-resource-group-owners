@@ -1,11 +1,15 @@
 # Automatically tag Azure resource groups with the name of who created it
 
-This example demonstrates how you can automatically tag resource groups with the name of who created it using data available from the activity log. The tag applied to each resource group has the format:
+This example demonstrates how you can automatically tag resource groups with the name and username of who created it using data available from the activity log. The tag applied to each resource group has the format:
 
 ```json
 {
   "Key": "Owner",
   "Value": "Jane Doe"
+},
+{
+  "Key": "Username",
+  "Value": "janedoe"
 }
 ```
 
